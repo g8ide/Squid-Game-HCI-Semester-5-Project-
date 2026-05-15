@@ -1,4 +1,4 @@
-# Squid-Game-HCI-Semester-5-Project-
+# Squid-Game-HCI-Semester-5-Project
 
 This is a vanilla JavaScript “Squid Game” inspired browser game that recreates the Red Light, Green Light challenge with clean structure and smooth gameplay.
 
