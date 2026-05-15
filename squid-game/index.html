@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Squid Game — Red Light, Green Light</title>
+  <meta name="description" content="Play the iconic Red Light Green Light game from Squid Game. Move during green light, freeze during red light. Survive to win!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Start Screen -->
+  <div id="startScreen" class="screen active">
+    <div class="start-content">
+      <div class="squid-logo">
+        <svg viewBox="0 0 100 100" class="squid-shape">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="var(--pink)" stroke-width="3"/>
+          <polygon points="50,15 85,75 15,75" fill="none" stroke="var(--pink)" stroke-width="3"/>
+        </svg>
+      </div>
+      <h1 class="game-title">RED LIGHT<br><span class="green-text">GREEN LIGHT</span></h1>
+      <p class="subtitle">무궁화 꽃이 피었습니다</p>
+      <div class="difficulty-select">
+        <button class="diff-btn active" data-diff="easy" id="diffEasy">EASY</button>
+        <button class="diff-btn" data-diff="normal" id="diffNormal">NORMAL</button>
+        <button class="diff-btn" data-diff="hard" id="diffHard">HARD</button>
+      </div>
+      <button id="startBtn" class="start-btn">
+        <span class="btn-text">ENTER THE GAME</span>
+        <span class="btn-glow"></span>
+      </button>
+      <p class="instructions">Hold <kbd>SPACE</kbd> or <kbd>CLICK</kbd> to move forward<br>Release to stop — Don't move on RED LIGHT!</p>
+    </div>
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <!-- Game Screen -->
+  <div id="gameScreen" class="screen">
+    <!-- HUD -->
+    <div id="hud" class="hud">
+      <div class="hud-item">
+        <span class="hud-label">TIME</span>
+        <span class="hud-value" id="timer">60</span>
+      </div>
+      <div class="hud-item signal-display" id="signalDisplay">
+        <span class="hud-label">SIGNAL</span>
+        <span class="hud-value signal-text" id="signalText">GREEN LIGHT</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">PROGRESS</span>
+        <span class="hud-value" id="progressText">0%</span>
+      </div>
+    </div>
+
+    <!-- Game Field -->
+    <div id="gameField" class="game-field">
+      <!-- Sky -->
+      <div class="sky"></div>
+
+      <!-- Finish Line -->
+      <div class="finish-line" id="finishLine">
+        <div class="finish-text">FINISH</div>
+      </div>
+
+      <!-- The Doll -->
+      <div id="doll" class="doll facing-away">
+        <div class="doll-head">
+          <div class="doll-hair"></div>
+          <div class="doll-face">
+            <div class="doll-eye left"></div>
+            <div class="doll-eye right"></div>
+            <div class="doll-nose"></div>
+            <div class="doll-mouth"></div>
+          </div>
+        </div>
+        <div class="doll-body">
+          <div class="doll-dress"></div>
+          <div class="doll-arm left-arm"></div>
+          <div class="doll-arm right-arm"></div>
+        </div>
+        <div class="doll-legs">
+          <div class="doll-leg left-leg"></div>
+          <div class="doll-leg right-leg"></div>
+        </div>
+      </div>
+
+      <!-- Track / Ground -->
+      <div class="ground"></div>
+
+      <!-- Player -->
+      <div id="player" class="player">
+        <div class="player-head"></div>
+        <div class="player-body">
+          <div class="player-number">456</div>
+        </div>
+        <div class="player-legs">
+          <div class="player-leg left-leg"></div>
+          <div class="player-leg right-leg"></div>
+        </div>
+      </div>
+
+      <!-- NPC Players -->
+      <div id="npcContainer" class="npc-container"></div>
+
+      <!-- Progress Bar -->
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="progress-marker" id="progressMarker"></div>
+      </div>
+    </div>
+
+    <!-- Overlay flash for red light detection -->
+    <div id="redFlash" class="red-flash"></div>
+    <!-- Scan line effect -->
+    <div id="scanLine" class="scan-line"></div>
+  </div>
+
+  <!-- Game Over Screen -->
+  <div id="gameOverScreen" class="screen">
+    <div class="gameover-content">
+      <div class="result-icon" id="resultIcon"></div>
+      <h2 class="result-title" id="resultTitle">ELIMINATED</h2>
+      <p class="result-subtitle" id="resultSubtitle">You moved during Red Light</p>
+      <div class="result-stats">
+        <div class="stat">
+          <span class="stat-label">Progress</span>
+          <span class="stat-value" id="finalProgress">0%</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Time</span>
+          <span class="stat-value" id="finalTime">0s</span>
+        </div>
+      </div>
+      <button id="retryBtn" class="start-btn retry-btn">
+        <span class="btn-text">TRY AGAIN</span>
+        <span class="btn-glow"></span>
+      </button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
